@@ -1,9 +1,11 @@
 "use client"
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 function FormTask() {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
+    const router = useRouter()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -17,11 +19,12 @@ function FormTask() {
         })
         const data = await res.json()
         console.log(data)
+        router.refresh()
     }
 
 
     return (
-        <div className="bg-slate-200 p-7">
+        <div className="bg-slate-200 p-7 h-fit">
             <form onSubmit={handleSubmit}>
                 <h1 className="text-black font-bold">Añadir tarea</h1>
                 <label htmlFor="title" className="text-xs text-black"
